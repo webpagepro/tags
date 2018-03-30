@@ -1,0 +1,10 @@
+
+  <div class="col-sm-0 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            {% for category in categories %}
+             <li><a href="{{ href }}{{ category.category_id}}">{{ category.category_name }}</a></li>
+
+             {% endfor %}
+
+         </ul>
+   </div>

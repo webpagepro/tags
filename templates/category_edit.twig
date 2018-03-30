@@ -1,0 +1,35 @@
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <h3>Edit Category</h3>
+    <table class="table table-striped">
+
+    <form class="form-horizontal" action="index.php" method="post" id="edit_category">
+        <input type="hidden" name="action" value="category_edit" />
+        <input type="hidden" name="cid" value="{{ category_id }}">
+         <input type="hidden" name="category_name" value="{{ category_name }}>"/>
+<b></b>
+        <tr><td>Category ID: {{ category_id }}</td
+
+        <tr><td><b>Rename:&nbsp;&nbsp;</b>
+        <input type="input" name="cname" value="{{ category_name }}"/> </td></tr>
+      </tr>
+       <tr> <td class="pull-right">
+        <input type="submit" value="Edit Category" class="btn btn-primary"/>
+          </td></tr>
+    </form>
+
+<form action="index.php" method="post" id="edit_form">
+   <td><input type="checkbox" name="attribute_name" value="attribute_name"> {{ attribute_name }}</td>
+<td><input type="checkbox" name="attribute_value" value="attribute_value"> {{ attribute_value }}</td>
+   <td><input type="checkbox" name="attribute_name" value="attribute_name"> {{ attribute_name }}</td>
+<td><input type="checkbox" name="attribute_value" value="attribute_value"> {{ attribute_value }}</td>
+   <td><input type="checkbox" name="attribute_name" value="attribute_name"> {{ attribute_name }}</td>
+<td><input type="checkbox" name="attribute_value" value="attribute_value"> {{ attribute_value }}</td>
+<td>  <input type="checkbox" name="gender" value="other"> Others</td>
+</form>
+
+    </table>
+
+
+</div>

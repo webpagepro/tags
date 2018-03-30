@@ -1,0 +1,103 @@
+  <!-- add form for adding a category here -->
+
+ 
+
+
+
+  <div class="col-xs-0  col-md-10 col-md-offset-2 main">
+
+         <p class="row sub-titles">Categories</p>
+
+
+
+    <table class="table table-striped container-fixed">
+
+    <!-- add categories table here -->
+
+
+
+    {% for category in categories %}
+
+  {% include 'modal_delete.twig' %}
+
+    <tr>
+
+       <td class="categories">{{ category.category_name }}
+
+        <td><form action="index.php" method="post" id="confirm-delete">
+
+        <input type="hidden" name="action" value="delete_category"/>
+
+	<input type="hidden" name="category_id" value="{{ category.category_id }}"/>
+
+
+
+<input type="button" class="btn btn-danger" data-href="index.php?action=delete_category&category_id={{ category.category_id }}" data-toggle="modal" data-target="#confirm-delete" value="Delete">
+
+      </td>  </form>
+
+     
+
+
+
+            <script>
+
+                $('#confirm-delete').on('show.bs.modal', function(e) {
+
+                    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+
+
+                    $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+
+                });
+
+            </script>
+
+
+
+ <td><form action="index.php" method="post" id="edit_form">
+
+        <input type="hidden" name="action" value="category_edit_form"/>
+
+	<input type="hidden" name="category_id" value="{{ category.category_id }}" />
+
+ <input class="btn btn-primary" type="submit" value="Edit"/>
+
+     </td>  </form>
+
+
+
+    <td></td>
+
+    </tr>
+
+    {% endfor %}
+
+    </table>
+
+<div class="form-group">
+
+
+
+ <label class="control-label">{{ category.category_name }}</label>
+
+  <form action="index.php" method="post" >
+
+     <input type="hidden" name="action" value="add_category"/>
+
+<input type="input" name="category_name" class="form-control" />
+
+<input class="btn btn-primary" id="btn_add_category" type="submit" value="Add Category"/>
+
+</form>
+
+
+
+
+
+
+
+ 
+
+</div>

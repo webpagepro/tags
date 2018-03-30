@@ -1,0 +1,90 @@
+
+
+    {% include 'modal-asset-list-delete.twig' %}
+
+    <div class="col-sm-10 col-md-0 col-md-offset-2 main">
+
+  <p class="row sub-titles">{{ category_name }}</p>
+
+<table class="table table-striped container-fixed">
+
+
+
+    <!-- add categories table here -->
+
+  <div class="form-actions">
+
+
+
+ {% for asset_id, asset in assets %}
+
+
+
+  <tr>
+
+    <td style="color:#0F0566; text-shadow:0px 1px 1px #A19AA0; letter-spacing:1.5px; position:relative;  font-weight:600; font-size:1.1em;">{{ asset_id }}   </td></tr>
+
+
+
+{% for attribute_name, attribute_value in asset.attributes %}
+
+<tr>
+
+
+
+<td>{{ attribute_name }}</td>  <td>  {{ attribute_value }} </td>
+
+
+
+</tr>
+
+{% endfor %}
+
+
+
+<tr>
+
+       <td><form action="tags.php?id={{ asset_id }}" method="post" id="asset">
+
+        <input type="hidden" name="action" value="asset_edit_form"/>
+
+	<input type="hidden" name="asset_id" value="{{ asset_id }}" />
+
+  	<input type="hidden" name="category_id" value="{{ category_id }}" />
+
+  	<input type="hidden" name="assets" value="{{ assets }}" />
+
+ <input class="btn-sm btn btn-primary" type="submit" value="View / Edit"/>
+
+      </td>
+
+<td><input type="button" class="btn-sm btn btn-danger" data-href="{{ delete_url }}{{ asset_id }}&category_id={{ category_id }}" data-toggle="modal" data-target="#confirm-delete" value="Delete"  id="delete_btn">
+
+  <script>
+
+      $('#confirm-delete').on('show.bs.modal', function(e) {
+
+          $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+
+
+          $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+
+      });
+
+  </script>
+
+</form>
+
+</td>
+
+
+
+</tr>
+
+
+
+{% endfor %}
+
+  </table>
+

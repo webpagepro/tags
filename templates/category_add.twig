@@ -1,0 +1,78 @@
+
+   {% include 'navbar.twig' %}
+
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+ <div class="container-responsive">
+
+     <p class="row sub-titles">Categories</p>
+
+  <!-- add form for adding a category here -->
+  {% include 'modal_delete.twig' %}
+
+
+    <table class="table table-striped container-fixed">
+    <!-- add categories table here -->
+      <div class="form-actions">
+    {% for category in categories %}
+    <tr>
+       <td class="categories">{{ category.category_name }}
+        <td><form action="index.php" method="post" id="category_add_form">
+        <input type="hidden" name="action" value="delete_category"/>
+	<input type="hidden" name="category_id" value="{{ category.category_id }}"/>
+
+<input type="button" class="btn btn-danger" data-href="index.php?action=delete_category&category_id={{ category.category_id }}" data-toggle="modal" data-target="#confirm-delete" value="Delete">
+       </form>
+      </td>
+
+            <script>
+                $('#confirm-delete').on('show.bs.modal', function(e) {
+                    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+                    $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+                });
+            </script>
+
+
+       <td><form action="index.php" method="post" id="edit_form">
+        <input type="hidden" name="action" value="category_edit_form"/>
+	<input type="hidden" name="category_id" value="{{ category.category_id }}" />
+ <input class="btn btn-primary" type="submit" value="Edit"/>
+       </form></td>
+
+    <td></td>
+    </tr>
+    {% endfor %}
+    </table>
+<div class="form-group">
+
+ <label class="control-label">{{ category.category_name }}</label>
+  <form action="index.php" method="post" >
+     <input type="hidden" name="action" value="add_category"/>
+<input type="input" name="category_name" class="form-control" />
+<input class="btn btn-primary" id="btn_add_category" type="submit" value="Add Category"/>
+</form>
+
+<div class="row">
+<table class="table table-striped container">
+<tr>
+<td>
+
+
+
+  <input type="checkbox" name="attribute_name" value="attribute_name"> {{ attribute_name }}</td>
+<td><input type="checkbox" name="attribute_value" value="attribute_value"> {{ attribute_value }}</td>
+<td>  <input type="checkbox" name="gender" value="other"> Others
+</form>
+
+
+</td>
+</tr>
+
+
+</table>
+</div>
+
+
+</div>
+</div>

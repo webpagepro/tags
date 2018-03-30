@@ -1,0 +1,55 @@
+
+
+{% include 'modal-asset-delete.twig' %}
+ <div class="container">
+
+
+
+   
+         </ul>
+      </div>
+    </div>
+
+<div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+
+            <table class="table table">
+        <div class="asset_code"> {{ code }} </div>     <br>
+         <div class="asset_code"> {{ base }} </div>
+<tbody>
+<div class="form-group">
+<form action="" method="POST" role="form">
+<input type="hidden" name="action" value="updater">
+<div class="asset_code" id="asset_code">
+<input type="hidden" name="code" value="{{ code }}" /></div>
+<input type="hidden" name="cate_id" value="{{ cate_id }}" />
+<input type="hidden" name="attribute_ids[]" value="{{ attribute_ids }}" />
+<input type="hidden" name="cnt" value="{{ cnt }}"
+
+<tr><td>
+
+{% for i in 0..cnt %}
+<label for "attribute_names[]">{{ attribute_names[i] }} </label><input type="text" name="attribute_values[]" value="{{ attribute_values[i] }}" class="form-control"/>
+{% endfor %}
+
+<tr><td><label for "attribute_note">Notes: </label><input type="textarea" name="attribute_note" value="{{ attribute_note }}" class="form-control"/></td></tr>
+<tr><td></td></tr>
+<tr><td><input type="submit" value="Update" class="btn-lg btn-primary"/>
+</form>
+
+
+<input type="button" class="btn-lg btn btn-danger" data-href="{{ delete_url }}" data-toggle="modal" data-target="#confirm-delete" value="Delete"  id="delete_btn">
+</tr>
+  <script>
+      $('#confirm-delete').on('show.bs.modal', function(e) {
+          $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+          $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+      });
+  </script>
+</div>
+  </tbody>
+    </table>
+  </body>
+
+
+</html>

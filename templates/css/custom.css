@@ -1,0 +1,53 @@
+.container
+{width:100%;  }
+
+.main{max-width:100%;}
+
+.button-spacing
+{font-size: 1em; font-weight: bold; letter-spacing:.2em; position:relative; float:left; margin:4px; display:inline; margin-top:5px; right:0:}
+
+#button_row{width:100%;}
+
+.view_footer
+{font-size: .8em; font-style: italic; float:right;}
+
+thead td
+{font-size: .9em; font-weight:normal; }
+
+.status{position:relative; float:left; color:#f00; margin:10px; font-size:2em;}
+.asset_code_lg{color:#0F0566; text-shadow:0px .6px .7px #A19AA0; letter-spacing:1px; top:-.8em;  float:right; position:relative; right:35%; font-weight:600; font-size:2.8em;}
+.asset_code{color:#0F0566; text-shadow:0px .6px .7px #A19AA0; letter-spacing:1px;   float:left; position:relative;  font-weight:600; font-size:1.8em; }
+.sub-titles{color:#0F0566; text-shadow:0px 1px 1px #A19AA0;  letter-spacing:1px; float:right; position:relative; top:-.8em; font-weight:600; font-size:2.2em; }
+.sub-titles-new_asset{color:#0F0566; text-shadow:0px 1px 1px #A19AA0;  letter-spacing:1px; float:left; position:relative;  font-weight:600; font-size:2.2em; }  */
+.atags{ color:#0F0566; text-shadow:0px 1px 1px #A19AA0; letter-spacing:1.5px; position:relative;  font-weight:600; font-size:2.1em;}
+td.categories{/*color:#0F0566; text-shadow:0px .5px .5px #A19AA0;   position:relative; */ font-size:1.2em; font-weight:600; letter-spacing:1px; }
+
+label{padding:10px 0 0 0; color:#6699ff rgb(0, 153, 255);letter-spacing: 1.8px;font-family:'Electrolize',"Helvetica Neue",Helvetica,Arial,sans-serif; }
+label-assets{padding:1px; color:#6699ff rgb(0, 153, 255);letter-spacing: 1.1px;font-family:Verdana, Geneva, sans-serif; font-size:1em }
+input.form-control{font-family:"Lucida Console", Monaco, monospace; letter-spacing: 2px; font-weight:600;  vertical-align:middle; width:70%;}
+#btn_add_category{float: left; margin-left: 70.5%; top: -35px; position: relative;}
+#delete_btn{float:right; margin-right:20%;}
+textarea{height:80px;line-height: 14px; width:100%; 30px; }
+
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height:1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size:.9em;
+    color:#000;
+
+th{position:relative; float:left; display:inline; margin-left: width:40% }
+.categories{float:left;position:relative; margin-right:10px; left:200px;}
+
+
+#id {position:relative; float:right;}
+
+.debug-url {visible:hidden;}
+
+
+#myModalLabel .modal-title{font-weight:bold;}
+
+.delete_object{ font-weight:600; font-size:1em;   letter-spacing:1px;}
