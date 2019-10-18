@@ -18,7 +18,6 @@ include $base . '/common/head.php';
 //include $base . '/lib/common/navbar.php';
 //require_once  $base . '/model/mysqli/classes/class_category.php';
 
-//$mysqli = new mysqli('127.0.0.1', 'jvarvel', 'ftf3x6nuTVJFD2pN', 'inventory');
 
 
 
