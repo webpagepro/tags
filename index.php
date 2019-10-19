@@ -23,7 +23,7 @@ $sess = 7000;
 
 
 
-$db = new mysqli("localhost", "phxcrimi_assets", "P@ssw0rd", "phxcrimi_inventory");
+$db = new mysqli("localhost");
 $q = "SELECT category_id FROM assets WHERE asset_id = $id_lookup";
 
 $category_id = $db->query($q);
