@@ -6,7 +6,7 @@
 require_once  'config.php';
 // Grabs scanned
 $id = htmlspecialchars($_GET['id']);
-$db = new mysqli("localhost", "phxcrimi_assets", "P@ssw0rd", "phxcrimi_inventory");
+$db = new mysqli("localhost");
 $q = "SELECT asset_id FROM assets WHERE asset_id = $id";
 ////$result = get_qr_code($id);
 $result = $db->query($q);
