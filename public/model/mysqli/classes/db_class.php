@@ -4,7 +4,7 @@
 class Database
 {
     // server info
-private $server = 'localhost';
+private $server = '';
 private $user = '';
 private $pass = '';
 private $dbase = '';
