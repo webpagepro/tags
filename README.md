@@ -27,7 +27,7 @@ The application will enable any individual with a computer and/or mobile device 
 <li>delete_category</li> 
 </ul><br>
 <p>
-<b>Input: </b>
+<b>Input: </b><br>
 Name <br>
 Computer Name<br>
 User <br>
@@ -39,7 +39,7 @@ HDD Test <br>
 Date Tested <br>
 Notes<br><br>
 <bloxkquote>
-<b>Output: Name <br>
+<b>Output: Name </b><br>
 Computer Name<br>
 User <br>
 Department <br>
