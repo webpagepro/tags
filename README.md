@@ -39,7 +39,8 @@ HDD Test <br>
 Date Tested <br>
 Notes<br><br>
 <bloxkquote>
-<b>Output: Name </b><br>
+<b>Output:<br>
+ Name </b><br>
 Computer Name<br>
 User <br>
 Department <br>
