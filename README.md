@@ -1,55 +1,64 @@
-###LAMP Stack: QRCode Scan Assest Manager - PHP/MySQL/Twig/Bootstrap 3
+<b>LAMP Stack: QRCode Scan Assest Manager - PHP/MySQL/Twig/Bootstrap 3
+<br><br>
+The application will enable any individual with a computer and/or mobile device (with a FREE QR Code Reader app installed) to manage their own personal or business database of hardware inventory (computer or otherwise). Items can be manaually assigned unique ID's or can be assigned unique QR Codes for optimal efficient asset tracking. Important to note: this application is intended only for reading QR Code images, at this point. There exists many FREE options for creating such images online. Future versions of this software will include the ability to generate your QR Code images, as well.
 
-<b>The application will enable any individual with a computer and/or mobile device (with a FREE QR Code Reader app installed) to manage their own personal or business database of hardware inventory (computer or otherwise). Items can be manaually assigned unique ID's or can be assigned unique QR Codes for optimal efficient asset tracking. Important to note: this application is intended only for reading QR Code images, at this point. There exists many FREE options for creating such images online. Future versions of this software will include the ability to generate your QR Code images, as well.</b>
+<b>Full Stack Technical: PHP MySQL Datatbase Twig Bootstrap 3
 
-#Full Stack Technical: PHP MySQL Datatbase Twig Bootstrap 3
+<ul><b>ROUTES</b> 
+<li>get_qr_code</li>
+<li>get_assets_by_category</li> 
+<li>**get_attributes</li>  
+<li>get_asset</li>  
+<li>get_assets </li> 
+<li>delete_asset </li> 
+<li>add_asset</li>  
+<li>edit_asset </li> 
+<li>category_attributes </li> 
+<li>create_ata_no_record_found </li> 
+<li>notes_no_record_found </li> 
+<li>update_attribute_notes</li> 
+<br>
+<li>get_category </li> 
+<li>get_categories </li> 
+<li>get_category_name </li> 
+<li>get_category_name_from_categories </li> 
+<li>add_category </li> 
+<li>edit_category </li> 
+<li>delete_category</li> 
+</ul><br><br>
+<b>Input: </b>
+Name <br>
+Computer <br>
+Name<br>
+User <br>
+Department <br>
+Processor <br>
+Storage <br>
+RAM Test <br>
+HDD Test <br>
+Date Tested <br>
+Notes<br>
 
-#ROUTES 
--get_qr_code
--get_assets_by_category 
--get_attributes 
--get_asset 
--get_assets 
--delete_asset 
--add_asset 
--edit_asset 
--category_attributes 
--create_ata_no_record_found 
--notes_no_record_found 
--update_attribute_notes
-
--get_category 
--get_categories 
--get_category_name 
--get_category_name_from_categories 
--add_category 
--edit_category 
--delete_category
-
-#Input: 
-Name 
-Computer 
-Name
-User 
-Department 
-Processor 
-Storage 
-RAM Test 
-HDD Test 
-Date Tested 
-Notes
-
-#Output: 
-Name 
-Computer Name
-User 
-Department 
-Processor 
-Storage 
-RAM 
-Test 
-HDD 
-Test 
-Date 
-Tested 
+<b>Output: </b>
+Name <br>
+Computer Name<br>
+User <br>
+Department <br>
+Processor <br>
+Storage <br>
+RAM <br>
+Test <br>
+HDD <br>
+Test <br>
+Date <br>
+Tested <br>
+Notes <br>
+Processor  <br>
+Storage  <br>
+RAM  <br>
+Test  <br>
+HDD  <br>
+Test  <br>
+Date  <br>
+Tested  <br>
 Notes
