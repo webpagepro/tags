@@ -7,7 +7,7 @@ The application will enable any individual with a computer and/or mobile device 
 <ul><b>ROUTES</b> 
 <li>get_qr_code</li>
 <li>get_assets_by_category</li> 
-<li>**get_attributes</li>  
+<li>get_attributes</li>  
 <li>get_asset</li>  
 <li>get_assets </li> 
 <li>delete_asset </li> 
@@ -25,7 +25,8 @@ The application will enable any individual with a computer and/or mobile device 
 <li>add_category </li> 
 <li>edit_category </li> 
 <li>delete_category</li> 
-</ul><br><br>
+</ul><br>
+<p>
 <b>Input: </b>
 Name <br>
 Computer Name<br>
@@ -50,12 +51,4 @@ HDD <br>
 Test <br>
 Date <br>
 Tested <br>
-Notes<br><br>
-RAM <br>
-Test <br>
-HDD <br>
-Test <br>
-Date <br>
-Tested <br>
-Notes<br><br>
-<img src="assets.jpg"/>
+Notes</p>
