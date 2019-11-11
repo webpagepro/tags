@@ -17,7 +17,7 @@ The application will enable any individual with a computer and/or mobile device 
 <li>create_ata_no_record_found </li> 
 <li>notes_no_record_found </li> 
 <li>update_attribute_notes</li> 
-<br>
+<br><br>
 <li>get_category </li> 
 <li>get_categories </li> 
 <li>get_category_name </li> 
@@ -36,7 +36,7 @@ Storage <br>
 RAM Test <br>
 HDD Test <br>
 Date Tested <br>
-Notes<br>
+Notes<br><br>
 <bloxkquote>
 <b>Output: Name <br>
 Computer Name<br>
@@ -44,6 +44,13 @@ User <br>
 Department <br>
 Processor <br>
 Storage <br>
+RAM <br>
+Test <br>
+HDD <br>
+Test <br>
+Date <br>
+Tested <br>
+Notes<br><br>
 RAM <br>
 Test <br>
 HDD <br>
