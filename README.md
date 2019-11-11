@@ -1,13 +1,15 @@
 <b>LAMP Stack: QRCode Scan Assest Manager - PHP/MySQL/Twig/Bootstrap 3</b>
 
 
-The application will enable any individual with a computer and/or mobile device (with a FREE QR Code Reader app installed) to manage their own personal or business database of hardware inventory (computer or otherwise). Items can be manaually assigned unique ID's or can be assigned unique QR Codes for optimal efficient asset tracking. Important to note: this application is intended only for reading QR Code images, at this point. There exists many FREE options for creating such images online. Future versions of this software will include the ability to generate your QR Code images, as well.
+The application will enable any individual with a computer and/or mobile device (with a FREE QR Code Reader app installed) to manage their own personal or business database of hardware inventory (computer or otherwise). Upon scanning a QR Code, the app will determine if the item is already entered into the database or if a new record needs to be created.  If an item exists, it can be viewed, edited, or removed. Im the case the item does not already exist, a unigque ID is created and a blank form will appear with the correct number of fields corresponding to the chose category.  For instance, computers will have more parts than a LAN operated phone device.
+
+The app also provides a view for editing Categories and a full list view of assets corresponding with a particular category.
 
 <b>Full Stack Technical</b><br> 
 PHP<br> MySQL<br> Datatbase<br> Twig<br> Bootstrap 3
 
 <ul><b>ROUTES</b> 
-<li>get_qr_code</li>
+<li>get_qr_code</l
 <li>get_assets_by_category</li> 
 <li>get_attributes</li>  
 <li>get_asset</li>  
