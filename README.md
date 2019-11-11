@@ -19,8 +19,9 @@ PHP<br> MySQL<br> Datatbase<br> Twig<br> Bootstrap 3
 <li>create_ata_no_record_found </li> 
 <li>notes_no_record_found </li> 
 <li>update_attribute_notes</li> 
-<br><br>
-<li>get_category </li> 
+ 
+ 
+ <li>get_category </li> 
 <li>get_categories </li> 
 <li>get_category_name </li> 
 <li>get_category_name_from_categories </li> 
