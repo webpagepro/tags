@@ -26,7 +26,7 @@ The application will enable any individual with a computer and/or mobile device 
 <li>edit_category </li> 
 <li>delete_category</li> 
 </ul><br><br>
-<b>Input: </b>
+<b>Input: </b> <br>
 Name <br>
 Computer <br>
 Name<br>
@@ -37,9 +37,9 @@ Storage <br>
 RAM Test <br>
 HDD Test <br>
 Date Tested <br>
-Notes<br>
+Notes<br> <br>
 
-<b>Output: </b>
+<b>Output: </b> <br>
 Name <br>
 Computer Name<br>
 User <br>
