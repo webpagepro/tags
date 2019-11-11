@@ -3,7 +3,7 @@
 
 The application will enable any individual with a computer and/or mobile device (with a FREE QR Code Reader app installed) to manage their own personal or business database of hardware inventory (computer or otherwise). Upon scanning a QR Code, the app will determine if the item is already entered into the database or if a new record needs to be created.  If an item exists, it can be viewed, edited, or removed. Otherwise, a unigque ID is created and a blank form will appear with the correct number of fields corresponding with the user selected category.  For instance, computers will have more parts than a LAN operated phone device.
 
-The app also provides a View for editing Categories and a full list View of database records corresponding with a specfic menu selected category.
+The app also provides a View for editing Categories and a full list View of database records corresponding with a specific  category which user can select from the menu.
 
 <b>Full Stack Technical</b><br> 
 PHP<br> MySQL<br> Datatbase<br> Twig<br> Bootstrap 3
