@@ -1,7 +1,6 @@
 <?php
 
-
- class AssetDB
+class AssetDB
 {
 
 private $server = '';
@@ -21,13 +20,13 @@ private $adb;
      }
 
       else{ 
-    //      echo "  AsssetDB - CONNECTED    ";
+            echo "  AsssetDB - CONNECTED    ";
           }
 
       return $this->adb;
   }
 
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  /**************** get qr code id. **************************/
     public function get_qr_code($asset_id)
     {
           $db = $this->adb;
@@ -48,14 +47,10 @@ private $adb;
 
                 print_r($db->error);
             }
-
-        }
-
-
+          }
     }
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ /**************** create new id assigned to default **************************/
   public function create_asset_id($asset_id, $cateogory_id)
   {
         $query = "INSERT INTO assets(asset_id, category_id)
@@ -67,7 +62,8 @@ private $adb;
           $stmt->close();
         }
   }
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+/**************** get asset id by category **************************/
    public function get_assets_by_category($category_id) {
       $db = $this->adb;
        $query = "SELECT *
@@ -85,12 +81,10 @@ private $adb;
        $result->free();
        return $items;
    }
-
-//==============================================================================
-
+ 
+ /**************** get attributes **************************/
     public function get_attributes($category_id)
     {
-        // $db = new Database();
         $db = $this->adb;
          $attributes = array();
          $sql = "SELECT a.asset_id, a.category_id, attr.attribute_name, ata.attribute_value, ata.attribute_id
@@ -122,19 +116,15 @@ private $adb;
                     $assets[$asset_id]['attributes'] = array();
                 }
 
-
               $assets[$asset_id]['attributes'][$attribute_name] = $attribute_value;
         }
                //  $attributes[]  = array("attribute_name" => $row['attribute_name'], "attribute_value" => $row['attribute_value']);//array($row['attribute_name'] => $row['attribute_value']); //
          return $assets;
       }
 
-//==============================================================================
+  /**************** get asset by id **************************/
       function get_asset($asset_id) {
-          //  global $db;
-        //  $db = new AssetDB();
            $db = $this->adb;
-        //  $this->db = $this->adb;
           $query = "SELECT * FROM assets WHERE asset_id = '$asset_id'";
           $stmt = $db->query($query);
           if ($stmt == false) {
@@ -143,8 +133,8 @@ private $adb;
           $asset = $stmt->fetch_assoc();
           return $asset;
       }
-
-//==============================================================================
+  
+  /**************** get all assets by category id **************************/
       function get_assets($category_id)
       {
 
@@ -158,7 +148,6 @@ private $adb;
                                                          ON ata.attribute_id = attr.attribute_id
                                                          WHERE a.category_id = $category_id
                                                          ORDER BY a.asset_id ASC";
-        //  $result = $db->query($sql);
           $result = $db->query($sql);
           if($result == FALSE)
             {
@@ -167,13 +156,8 @@ private $adb;
                exit;
             }
 
-          //$attribute_cnt =
-    //      $cbd = new CategoryDB();
-      //    $cbd->category_lookup($category_id);
-          //$cnt = count($attribute_cnt);
-
          $assets = array();
-
+       
           while($row = $result->fetch_assoc())
           {
                     $asset_id = $row['asset_id'];
@@ -188,19 +172,16 @@ private $adb;
                   }
 
                   $assets[$asset_id]['attributes'][$attribute_name] = $attribute_value;
-
             }
-          //===========<pre>";
+          //<pre>";
           //  print_r($assets); echo "<br>";
-    //       "===============================</pre>";
+          //</pre>";
               return $assets;
 
       }
 
-//==============================================================================
-
+  /**************** delete asset by id **************************/
     public function delete_asset($asset_id) {
-      //  $db = Database::getDB();
         $adb = new AssetDB();
         $query = "DELETE FROM assets
                   WHERE asset_id = '$asset_id'";
@@ -208,8 +189,7 @@ private $adb;
         return $row_count;
     }
 
-//==============================================================================
-
+  /**************** get asset **************************/
   public function add_asset($asset_id, $category_id, $category_name, $asset_name, $asset_attributes) {
         global $adb;
         $query = "INSERT INTO assets
@@ -219,8 +199,7 @@ private $adb;
         $db->exec($query);
     }
 
-//==============================================================================
-    //EDIT Asset
+ /**************** edit asset **************************/
   public function edit_asset($asset_id, $asset_name, $category_id, $category_name,  $asset_attributes) {
           $db = $this->adb;
          $query = "UPDATE inventory.assets
@@ -229,11 +208,11 @@ private $adb;
         $adb->exec($query);
      }
 
-
+ /**************** update asset category id **************************/
  public function update_asset($aid, $cid)
  {
              $db = $this->adb;
-             $query = 'UPDATE phxcrimi_inventory.assets
+             $query = 'UPDATE database.assets
                    SET assets.category_id = ?
                    WHERE assets.asset_id = ?';
              $stmt = $db->prepare($query);
@@ -256,11 +235,10 @@ private $adb;
          }
      }
 
-
-
+  /**************** attributes by asset id **************************/
      public function twig_attributes($asset_id)
       {
-           $db = new Database();//$this->adb;//global $db;
+           $db = new Database();
            $attributes = array();
            $query = "SELECT ata.asset_id, ata.attribute_id, attr.attribute_name, ata.attribute_value, atn.notes
                                                          FROM asset_to_attributes ata
@@ -270,17 +248,12 @@ private $adb;
                                                          ON atn.asset_id = ata.asset_id
                                                          WHERE ata.asset_id =  $asset_id";
          $result = $db->ExecuteQuery($query);
-//  $result = $db->query($query);
-
            return $result;
      }
 
-//==============================================================================
-
+  /**************** get categories by asset id **************************/
     public function category_attributes($asset_id)
      {
-         //global $db;
-       //$db = new AssetDB();
        $db = $this->adb;
          $attributes = array();
          $sql = "SELECT a.asset_id, cta.category_id, ata.attribute_id, attr.attribute_name, ata.attribute_value, atn.notes
@@ -315,28 +288,24 @@ private $adb;
            return $attributes;
       }
 
-
+ /**************** called if asset not exists **************************/
       function create_ata_no_record_found($asset_id, $attrs_id = array(), $attrs = array())
       {   // $attrs_id = array();
          $db = $this->adb;
-          $q = "INSERT INTO phxcrimi_inventory.asset_to_attributes(asset_id, attribute_id, attribute_value)
+          $q = "INSERT INTO database.asset_to_attributes(asset_id, attribute_id, attribute_value)
                 VALUES (?,?,?)";
-
-     // for($i=0;$i<11;$i++)
-     // {
-     // $attrs_id++;
 
       $stmt = $db->prepare($q);
       $stmt->bind_param("iis", $asset_id, $attrs_id, $attrs);  //, $attribute_values); //$v[0], $v[1], $v[2], $v[3], $v[4]);
       $stmt->execute();
       return $stmt;
-  //}
+
 }
 
-
+ /**************** create notes called if asset not exists **************************/
     public function notes_no_record_found($asset_id, $note_id, $note)
       {
-           $db = $this->adb;
+         $db = $this->adb;
          $query = "INSERT INTO asset_to_notes(asset_id, note_id, notes)
             VALUES(?,?,?)";
           $stmt = $db->prepare($query);
@@ -345,10 +314,9 @@ private $adb;
           $stmt->close();
         }
 
-
+//****************** get asset note by asset id ***********************************
         public function get_asset_notes($asset_id)
         {
-              //global $db;
               $db = $this->adb;
               $query = "SELECT notes
                        FROM asset_to_notes
@@ -360,13 +328,11 @@ private $adb;
 
           }
 
-//**********************************   Update Attributes ***********************************
-
-      
-      public function updater($attr_values = array(), $code, $attrs_id = array())
+//***************** update existing attributes ***********************************
+   public function updater($attr_values = array(), $code, $attrs_id = array())
       {
            $db = $this->adb;
-            $q = 'UPDATE phxcrimi_inventory.asset_to_attributes SET attribute_value = ? WHERE asset_id = ? AND attribute_id = ?';
+            $q = 'UPDATE database.asset_to_attributes SET attribute_value = ? WHERE asset_id = ? AND attribute_id = ?';
 
                      $stmt = $db->prepare($q);
                      if ($stmt == false) {
@@ -386,12 +352,11 @@ private $adb;
                   }
           }
 
-//**********************************   Update Attributes ***********************************
-
+//***************** update asset notes ***********************************
    public function update_attribute_notes($notes, $code)
    {
       $db = $this->adb;
-      $query = 'UPDATE phxcrimi_inventory.asset_to_notes
+      $query = 'UPDATE database.asset_to_notes
                SET notes = ? WHERE asset_id = ?';
        $stmt = $db->prepare($query);
        $stmt->bind_param('si', $notes, $code);
