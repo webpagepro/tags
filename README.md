@@ -9,7 +9,7 @@ The app also provides a View for editing Categories and a full list View of data
 PHP<br> MySQL<br> Datatbase<br> Twig<br> Bootstrap 3
 
 <ul><b>ROUTES</b> 
-<li>get_qr_code</l
+ <li>get_qr_code</li>
 <li>get_assets_by_category</li> 
 <li>get_attributes</li>  
 <li>get_asset</li>  
