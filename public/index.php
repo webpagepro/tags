@@ -5,7 +5,6 @@ $base = __DIR__;
 include $base . '/config.php';
 $index = 'tags';
 
- 
 $twig_folder = '../templates';
 
 if (isset($_POST['action']))
@@ -16,12 +15,11 @@ if (isset($_POST['action']))
 else if (isset($_GET['action']))
 {
     $action = $_GET['action'];
-  }
+}
 
-else {
-       $action = 'list_assets';
-
-     }
+else{
+    $action = 'list_assets';
+}
 
 if ($action == 'list_assets')
 {
@@ -32,14 +30,14 @@ if ($action == 'list_assets')
     {
         $category_id = 1;
         header("Location: .?action=list_assets&category_id=$category_id");
-     }
+    }
 
-     $db = new AssetDB();
+    $db = new AssetDB();
     $assets = $db->get_assets($category_id);
 
       include 'view/sidebar.php';
       include 'view/asset_list.php';
-       include 'view/footer.php';
+      include 'view/footer.php';
 
   //$asset_id = $_GET['asset_id'];
   // $notes = $db->get_asset_notes($asset_id);
@@ -47,7 +45,7 @@ if ($action == 'list_assets')
 }
 
 
-/******************************************* CATEGORIES *********************************************/
+/************** CATEGORIES ****************/
   else if ($action == 'list_categories')
   {
       $db = new CategoryDB();
@@ -57,7 +55,7 @@ if ($action == 'list_assets')
       include 'view/footer.php';
   }
 
-     //EDIT CATEGORY FROM
+   //EDIT CATEGORY FROM
    else if ($action == 'category_edit_form')
    {
        $category_id = $_POST['category_id'];
@@ -81,8 +79,8 @@ if ($action == 'list_assets')
 
         else
         {
-             edit_category($cid, $cname);
-             header("Location: .?action=list_categories&category_id=$cid");
+           edit_category($cid, $cname);
+           header("Location: .?action=list_categories&category_id=$cid");
         }
     }
 
@@ -104,8 +102,8 @@ if ($action == 'list_assets')
         {
           $cdb = new CategoryDB();
           $category =  $cdb->add_category($category_name);
-            // header("Location: .?action=list_categories&category_id=$category_id");
-            header("Location: .?action=list_categories");
+          // header("Location: .?action=list_categories&category_id=$category_id");
+          header("Location: .?action=list_categories");
         }
     }
 
@@ -118,7 +116,7 @@ if ($action == 'list_assets')
         header('Location: .?action=list_categories');
     }
 
-/******************************************* ASSETS *********************************************/
+/*************** ASSETS ******************/
 
 else if ($action == 'delete_asset_list')
 {
@@ -132,24 +130,20 @@ else if ($action == 'delete_asset_list')
          echo "delete_asset_list";
      }
 
-  // if($action == 'asset_delete')
-  // {
-  // Delete asset
+  // Delete asset and notes
   else{
+     // Delete asset
         delete_asset($asset_id);
-
-
-     // Delete the notes
+    // Delete the notes
         delete_notes($asset_id);
    }
   // Display the asset List page for the current category
       header("Location: .?action=tags&asset_id=$id&category_id=$category_id");
 }
 
-//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-----==--=-==-=-
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   else if ($action == 'delete_asset')
   {
-
      echo "delete_asset";
      $asset_id = $_REQUEST['asset_id'];
      $category_id = $_REQUEST['category_id'];
@@ -158,11 +152,8 @@ else if ($action == 'delete_asset_list')
        {
            $error = "Invalid asset_id - update asset";
            include('model/errors/error.php');
-
        }
 
-    // if($action == 'asset_delete')
-    // {
     // Delete asset
     else{
           delete_asset($asset_id);
@@ -177,64 +168,49 @@ else if ($action == 'delete_asset_list')
         header("Location: .?action=list_assets&category_id=$category_id");
 
          print_r($lookup);
-
    }
 
-
-//------------------------------ UPDATER  --------------------------------------------------
+//**************** UPDATER  *****************/
 
 else if($action == 'updater')
 {
-
-
    $code = $_POST['code'];
    $category_id =  $_POST['cate_id'];
-    $cdb = new CategoryDB();
+   $cdb = new CategoryDB();
    $lookup = $cdb->category_lookup($category_id);
    $cntr = count($lookup);
+   $adb = new AssetDB();
 
-     $adb = new AssetDB();
+   for($i=0;$i<$cntr;$i++)
+   {
+      $attr_values[] =  $_POST['attribute_values'][$i];
+      $attr_ids[] = $lookup[$i]['attribute_id'];
+      $notes = $_POST['attribute_note'];
 
-   for($i=0;$i<$cntr;$i++){
-                          $attr_values[] =  $_POST['attribute_values'][$i];
-                          $attr_ids[] = $lookup[$i]['attribute_id'];
-                          $notes = $_POST['attribute_note'];
-
-                          $adb->updater($attr_values[$i], $code, $attr_ids[$i]);
-
-
+      $adb->updater($attr_values[$i], $code, $attr_ids[$i]);
     }
 
    if(!isset($code)) {
       $error = "Invalid asset data. Check all fields and try again. -  UPDATER ";
       include('model/errors/error.php');
-        $status_message = "failed";
+      $status_message = "failed";
    }
 
-  else{
-
-        /*
-        for($i=0;$i<$cntr;$i++)
-          {
-$adb->updater($attr_values[$i], $code, $attr_ids[$i]);
-
-          }
-          */
-
+  else{ /* for($i=0;$i<$cntr;$i++)  {$adb->updater($attr_values[$i], $code, $attr_ids[$i]); }*/
           $notes = $_POST['attribute_note'];
           $adb->update_attribute_notes($notes, $code);
-
       }
- //header("location:tags.php?id=$code&category_id=$cate_id");
-  header("location:?action=tags&asset_id=$code&category_id=$cate_id");
-  //  echo $status_message;
+
+    //header("location:tags.php?id=$code&category_id=$cate_id");
+     header("location:?action=tags&asset_id=$code&category_id=$cate_id");
+     //echo $status_message;
 
 }
 
   else if($action == 'asset_edit_form')
-    {
+  {
       //  $categories = get_categories();
-    $aid =  $_POST['ass_id'];
+       $aid =  $_POST['ass_id'];
        $cid = $_POST['category_id'];
 
 
@@ -246,8 +222,8 @@ $adb->updater($attr_values[$i], $code, $attr_ids[$i]);
        $category = $cdb->get_category($categ_id);
        $category_name = $category['category_name'];
 
-    //include ('view/asset_edit.php');
-  header("Location: ?action=tags&asset_id=$ass_id&category_id=$cate_id"); 
+     //include ('view/asset_edit.php');
+     header("Location: ?action=tags&asset_id=$ass_id&category_id=$cate_id"); 
 }
 
    //EXECUTES EDIT ASSET
@@ -274,73 +250,70 @@ $adb->updater($attr_values[$i], $code, $attr_ids[$i]);
 
 }
 
-//============================================  TAGS ===========================================/
+/******************  TAGS ********************/
 
 else if ($action === "tags")
 {
-    include 'view/sidebar.php';
-      $tag = $_GET['asset_id'];
-       $cdb = new CategoryDB();
-     //  $cdb = new CategoryDB();
-   //   $tag = $cdb->get_category_id_by_asset($tag);
+       include 'view/sidebar.php';
+         $tag = $_GET['asset_id'];
+         $cdb = new CategoryDB();
+    //$cdb = new CategoryDB();
+    //$tag = $cdb->get_category_id_by_asset($tag);
 
-       //$category_id = $_GET['category_id'];
+     //$category_id = $_GET['category_id'];
 
-       $adb = new AssetDB();
-       //  $asset_id = $_GET['asset_id'];
-       $attributes = $adb->category_attributes($tag);
-       $cnt = count($attributes);
+      $adb = new AssetDB();
+    //$asset_id = $_GET['asset_id'];
+      $attributes = $adb->category_attributes($tag);
+      $cnt = count($attributes);
 
-       echo $cnt . " attributes (action = tags)";
+      echo $cnt . " attributes (action = tags)";
 
-      //   $category_id = $cdb->get_category_id_from_asset_id($tag);
-     //  $category_id = $_GET['$category_id'];
-        $attribute_values = array();
-       $attribute_names = array();
-        $attribute_ids = array();
-       $attribute_note = "";
+    //$category_id = $cdb->get_category_id_from_asset_id($tag);
+    //$category_id = $_GET['$category_id'];
+          $attribute_values = array();
+          $attribute_names = array();
+          $attribute_ids = array();
+          $attribute_note = "";
 
-       for($i=0;$i<$cnt;$i++)
-       {
-           //$asset_ids[] = $attributes[$i]['id'];
-               $attribute_values[] = $attributes[$i]['attribute_value'];
-               $attribute_names[] = $attributes[$i]['attribute_name'];
-               $attribute_ids[] = $attributes[$i]['attribute_id'];
-               $attribute_note = $attributes[$i]['notes'];
-              $category_id = $attributes[$i]['category_id'];
-        }
+  for($i=0;$i<$cnt;$i++)
+  {
+   //$asset_ids[] = $attributes[$i]['id'];
+          $attribute_values[] = $attributes[$i]['attribute_value'];
+          $attribute_names[] = $attributes[$i]['attribute_name'];
+          $attribute_ids[] = $attributes[$i]['attribute_id'];
+          $attribute_note = $attributes[$i]['notes'];
+          $category_id = $attributes[$i]['category_id'];
+  }
 
 
-                 $server = "/var/www/http/sites/tags/templates";
-                 $index = 'tags';
-                 $twig_folder =  $base .  "/../../templates";
-                 $twig_loader = new Twig_Loader_Filesystem($twig_folder);
-                 $twig = new Twig_Environment($twig_loader);
-                 $template = $twig->loadTemplate($index . ".twig");
-              echo $template->render(
-              array(
-                       'code' => $tag,
-                       'cnt' => $cnt - 1,
-                       'cate_id' => $category_id,
-                       'attribute_ids' => $attribute_ids,
-                       'attribute_names' => $attribute_names,
-                       'attribute_values' => $attribute_values,
-                       'attribute_note' => $attribute_note,
-                       'attributes' =>$attributes,
-                       'delete_url' => "index.php?action=delete_asset&asset_id=$tag",
-                       'navbar' => "navbar.php",
-           )
+          $server = "/var/www/http/sites/tags/templates";
+          $index = 'tags';
+          $twig_folder =  $base .  "/../../templates";
+          $twig_loader = new Twig_Loader_Filesystem($twig_folder);
+          $twig = new Twig_Environment($twig_loader);
+          $template = $twig->loadTemplate($index . ".twig");
+          echo $template->render(
+     array(
+          'code' => $tag,
+          'cnt' => $cnt - 1,
+          'cate_id' => $category_id,
+          'attribute_ids' => $attribute_ids,
+          'attribute_names' => $attribute_names,
+          'attribute_values' => $attribute_values,
+          'attribute_note' => $attribute_note,
+          'attributes' =>$attributes,
+          'delete_url' => "index.php?action=delete_asset&asset_id=$tag",
+          'navbar' => "navbar.php",
+         )
        );
-         
-
  }
 
-   /*******************************************EDIT ASSETS*********************************************/
-   //Display Form
+/*************** EDIT ASSETS ***************/
+//Display Form
   else if($action === 'new_asset_edit_form')
-    {
-
-       $adb = new AssetDB();
+  {
+        $adb = new AssetDB();
         $faid = $_GET['asset_id'];
         $fcid = $_GET['category_id'];
         $asset = $adb->get_asset($faid);
@@ -373,8 +346,6 @@ else if ($action === "tags")
 
            $cnt = count($attributes);
 
-             //
-
               if (empty($aid))
               {
                   $error = "Invalid asset data. Checck all fields and try again. - index/new_asset_attributes";
@@ -385,7 +356,6 @@ else if ($action === "tags")
                       for($i=0;$i<$cnt;$i++)
                       {
                         $attr_ids[] = $attributes[$i]['attribute_id'];
-
                         $adb->create_ata_no_record_found($aid, $attr_ids[$i], $attribute_values = "----------");
                       }
                 }
@@ -393,7 +363,7 @@ else if ($action === "tags")
                  header("Location: ?action=tags&asset_id=$aid&category_id=$cid");
 }
 
-/********************* ADD ASSET ********************************/
+/**************** ADD ASSET *****************/
     else if ($action == 'show_add_form')
     {
         $cdb = new CategoryDB();
@@ -425,51 +395,6 @@ else if ($action === "tags")
         // Display the asset List page for the current category
       //  header("Location: index.php?asset_id=$code&category_id=$category_id");
         }
-    }
+ }
 
-  /*  else if($action == 'view_assets_by_category')
-    {
-      ///  $categories = get_categories();
-
-        //$category_id = $category['category_id'];
-
-         $assets = $adb->get_assets_by_category($category_id);
-         include 'view/assets_by_category.php';
-
-      }
-
-*/
-
-
-
-
-/*
-$twig_loader = new Twig_Loader_Filesystem($twig_folder);
-$twig = new Twig_Environment($twig_loader, array('debug' => true));
-$twig->addExtension(new Twig_Extension_Debug());
-$template = $twig->loadTemplate($index . ".twig");
- echo $template->render(
-  array(
-                  'assets'  => $assets,
-                  'ass_id' => $ass_id,
-                 'category_id' => $category_id,
-                 'category_name' => $category_name,
-                 'categories' => $categories,
-      //     'vals' => array('names' => $attribute_names, 'values' => $attribute_values),
-              'delete_url' => "index.php?action=delete_asset_list&asset_id=",
-
-)
-);*/
-
-//function show_assets($categories = array(), $category_name = array(), $assets = array())//, $notes = array())
-//{
-
-  //include 'view/index.php';
-
-// }      //header("Location: view/assets_by_category.php?category_id=$category_id&asset_id=$asset_id");
-    //  $cdb = new CategoryDB();
-
-    //  $category_name = Category::get_category($category_id);
-
-
- // include 'common/navbar.php';
+  
